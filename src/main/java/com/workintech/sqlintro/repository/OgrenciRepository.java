@@ -29,17 +29,17 @@ public interface OgrenciRepository extends JpaRepository<Ogrenci, Long> {
     List<Ogrenci> find10AGirls();
 
     //Öğrenci numarası 5 ile 10 arasında olan Kız öğrencileri listeleyiniz.
-    String QUESTION_5 = "SELECT * FROM ogrenci WHERE ogr_no BETWEEN 5 AND 10 AND cinsiyet = 'K';";
+    String QUESTION_5 = "SELECT * FROM ogrenci WHERE ogrno > 5 AND ogrno < 10 AND cinsiyet = 'K';";
     @Query(value = QUESTION_5, nativeQuery = true)
     List<Ogrenci> findGirlsWithOgrno();
 
     // Öğrencileri adına göre sıralayınız (alfabetik)
-    String QUESTION_6 = "SELECT * FROM ogrenci ORDER BY ad;";
+    String QUESTION_6 = "SELECT * FROM ogrenci ORDER BY ad COLLATE \"tr-TR-x-icu\";";
     @Query(value = QUESTION_6, nativeQuery = true)
     List<Ogrenci> findStudentsAlphabetically();
 
     // 10A sınıfındaki öğrencileri okul numarasına göre azalan olarak sıralayınız.
-    String QUESTION_7 = "SELECT * FROM ogrenci WHERE sinif = '10A' ORDER BY ogr_no DESC;";
+    String QUESTION_7 = "SELECT * FROM ogrenci WHERE sinif = '10A' ORDER BY ogrno DESC;";
     @Query(value = QUESTION_7, nativeQuery = true)
     List<Ogrenci> find10AStudentsByOgrNo();
 
